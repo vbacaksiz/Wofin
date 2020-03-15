@@ -388,6 +388,12 @@ int controlOfEnteredWordAccuracy(int numOfLettersSelectedWord,char*enteredWord,c
 
 int userFindsTheWord(char*selectedWord,int numOfLettersSelectedWord,FILE*file1,int numOfAttempts)
 {
+    if (numOfAttempts == 5)
+    {
+        printf("WORD KEPT BY COMPUTER = %s",selectedWord);
+        printf("GAME OVER! OUT OF ATTEMPTS\n\n");
+        return 0;
+    }
     printf("ENTER THE WORD\n");
     char enteredWord[20];
     scanf("%s",&enteredWord);
@@ -397,8 +403,6 @@ int userFindsTheWord(char*selectedWord,int numOfLettersSelectedWord,FILE*file1,i
 
     int numOfLettersSecretWord=0;
     numOfLettersSecretWord=findingNumOfLettersSecretWord(enteredWord,numOfLettersSecretWord);
-    printf("%d\n",numOfLettersSecretWord);
-    printf("%s\n",enteredWord);
 
     copying(enteredWord,copyOfEnteredWord);
     copying(selectedWord,copyOfSelectedWord);
@@ -437,7 +441,7 @@ void selections()
 {
     printf("WORD FINDING GAME\n");
     printf("1.COMPUTER FIND THE WORD YOU KEEP\n");
-    printf("2.YOU FIND THE WORD KEEPED BY THE COMPUTER\n");
+    printf("2.YOU FIND THE WORD KEPT BY THE COMPUTER\n");
     printf("9.NUMBER OF WORDS IN THE DICTIONARY\n");
     printf("0.EXIT THE GAME\n");
 }
@@ -484,9 +488,7 @@ int main()
                 numOfLettersSelectedWord=findingNumOfLettersSecretWord(selectedWord,numOfLettersSelectedWord);
                 numOfLettersSelectedWord--;
                 int numOfAttempts=0;
-                printf("%s\n",selectedWord);
-                printf("%d\n",numOfLettersSelectedWord);
-                printf("%d\n",numOfAttempts);
+                printf("YOU ONLY HAVE 5 ATTEMPTS\n");
                 userFindsTheWord(selectedWord,numOfLettersSelectedWord,file1,numOfAttempts);
                 break;
             case 9:
